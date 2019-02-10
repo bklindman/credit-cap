@@ -1,7 +1,7 @@
 const express = require('express');
 
 const config = require('./config/config');
-
+const {mongoose} = require('./db/mongoose');
 const port = process.env.PORT;
 
 var app = express();
