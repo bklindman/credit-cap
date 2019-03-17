@@ -10,23 +10,29 @@ var CreditCardSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  bonus: {
-    type: Number,
-    default: 0,
-    min: 0
-  },
   fee: {
     type: Number,
     default: 0,
     min: 0
   },
   point_system: {
-    base: {
+    base_rate: {
       type: Number,
       required: true,
-      min:0
+      min: 0,
+      max: 0.1
     },
-    rewards: RewardBatchSchema.path('rewards')
+    rewards: RewardBatchSchema.path('rewards'),
+    bonus: {
+      type: Number,
+      default: 0,
+      min: 0
+    },
+    unit: {
+      type: String,
+      enum: ['% Cashback', 'Points', 'Miles'],
+      default: 'Points'
+    }
   }
 });
 

@@ -10,7 +10,9 @@ var RewardSchema = new mongoose.Schema({
   },
   reward: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
+    max: 0.1
   }
 }, options);
 
@@ -35,6 +37,7 @@ RewardBatchSchema.path('rewards').discriminator('Category', CategoryRewardSchema
 RewardBatchSchema.path('rewards').discriminator('Merchant', MerchantRewardSchema);
 
 module.exports = {
+  Reward,
   CategoryReward,
   MerchantReward,
   RewardBatchSchema
