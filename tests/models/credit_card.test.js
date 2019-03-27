@@ -7,7 +7,9 @@ resetCard = () =>{
   testCard = new CreditCard({
     institution: 'Test Bank',
     name: 'Rewards Card',
-    fee: 95,
+    fee: {
+      amount: 95
+    },
     point_system: {
       base_rate: .01,
       bonus: 80,
@@ -37,9 +39,9 @@ describe('Credit Card', () => {
     });
   
     it('should be invalid if fee is negative', (done) => {
-      testCard["fee"] = -1;
+      testCard["fee"]["amount"] = -1;
       testCard.validate(function(err) {
-        expect(err.errors['fee'].message).toBeDefined();
+        expect(err.errors['fee.amount'].message).toBeDefined();
         done();
       }); 
     });
@@ -86,7 +88,7 @@ describe('Credit Card', () => {
       var reward1 = {
         kind: 'Merchant',
         name: 'Test Merchant',
-        reward: .01
+        rate: .01
       };
       testCard.point_system.rewards = [reward1];
       testCard.validate(function(err){
