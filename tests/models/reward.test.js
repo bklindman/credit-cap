@@ -7,7 +7,7 @@ describe('Rewards Validation', () => {
   beforeEach(()=>{
     testReward = new Reward({
       name: 'test',
-      reward: .01
+      rate: .01
     });
   });
 
@@ -20,9 +20,9 @@ describe('Rewards Validation', () => {
   });
 
   it('should fail if it is missing a reward rate', (done) => {
-    testReward.reward = undefined;
+    testReward.rate = undefined;
     testReward.validate((err) => {
-      expect(err.errors['reward']).toBeDefined();
+      expect(err.errors['rate']).toBeDefined();
       done();
     });
   });
@@ -38,19 +38,19 @@ describe('Rewards Validation', () => {
     beforeEach(()=>{
       testReward = new CategoryReward({
         name: 'test',
-        reward: .01
+        rate: .01
       });
     });
 
     it('should fail if it is missing a category_id', (done) => {
       testReward.validate((err) => {
-        expect(err.errors['category_id']).toBeDefined();
+        expect(err.errors['category_ids'].message).toBe('Category IDs are required for Category Rewards');
         done();
       });
     });
 
     it('should pass if it has a category_id', (done) => {
-      testReward.category_id = "12415";
+      testReward.category_ids = ['12415'];
       testReward.validate((err) => {
         expect(err).toBeNull();
         done();

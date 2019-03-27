@@ -8,18 +8,25 @@ var RewardSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  reward: {
+  rate: {
     type: Number,
     required: true,
     min: 0,
-    max: 0.1
+    max: 10
+  },
+  limit: {
+    default: 0
   }
 }, options);
 
 var CategoryRewardSchema = new mongoose.Schema({
-  category_id: {
-    type: String,
-    required: true
+  category_ids: {
+    type: [String],
+    required: true,
+    validate: {
+      validator: arr => arr && arr.length > 0,
+      message: 'Category IDs are required for Category Rewards'
+    }
   }
 }, options);
 
