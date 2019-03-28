@@ -8,7 +8,7 @@ var app = express();
 
 
 app.get('/', (req, res) => {
-  res.send('Coming soon!');
+  res.send('Coming soon');
 });
 
 app.listen(port, () => {

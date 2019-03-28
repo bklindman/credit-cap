@@ -44,7 +44,7 @@ describe('Rewards Validation', () => {
 
     it('should fail if it is missing a category_id', (done) => {
       testReward.validate((err) => {
-        expect(err.errors['category_ids'].message).toBe('Category IDs are required for Category Rewards');
+        expect(err.errors['category_ids'].message).toBe('Category IDs are required for Category Rewards error');
         done();
       });
     });
