@@ -1,6 +1,5 @@
 const expect = require('expect');
 const {CreditCard} = require('../../server/db/models/credit_card');
-const mongoose = require('mongoose');
 
 var testCard;
 resetCard = () =>{
