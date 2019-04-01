@@ -4,17 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests/**/*.test.js",
-    "start":"node server/index.js" 
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha ./tests/**/*.test.js --exit",
+    "start": "node server/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.11"
   },
   "devDependencies": {
     "expect": "^24.5.0",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "supertest": "^4.0.2"
   }
 }
