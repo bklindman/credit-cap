@@ -2,3 +2,6 @@
 /node_modules
 #Ignore config json files
 **/config/*.json
+
+#Ignore static files from Angular build
+/server/public
