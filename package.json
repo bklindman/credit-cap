@@ -1,11 +1,16 @@
 {
   "name": "credit-cap",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.0",
+    "npm": "6.4.1"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha ./tests/**/*.test.js --exit",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "heroku-postbuild": "cd client && npm install"
   },
   "author": "",
   "license": "ISC",
