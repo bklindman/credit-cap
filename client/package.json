@@ -26,11 +26,11 @@
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26",
     "@angular/cli": "~7.3.7",
-    "@angular/compiler-cli": "^7.2.11"
+    "@angular/compiler-cli": "^7.2.11",
+    "typescript": "~3.2.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
-    "@angular/cli": "~7.3.7",
     "@angular/language-service": "^7.2.11",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
@@ -45,7 +45,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^6.0.0",
     "ts-node": "~5.0.1",
-    "tslint": "~5.9.1",
-    "typescript": "~3.2.4"
+    "tslint": "~5.9.1"
   }
 }
