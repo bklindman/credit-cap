@@ -3,18 +3,3 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-@mixin theme-colors($theme) {
-  $primary: map-get($map: $theme, $key: primary );
-  $secondary: map-get($map: $theme, $key: accent );
-  $warn: map-get($map: $theme, $key: warn );
-  .primary {
-    color: mat-color($primary);
-  } 
-  .secondary {
-    color: mat-color($secondary);
-  } 
-  .warn {
-    color: mat-color($warn);
-  } 
-}

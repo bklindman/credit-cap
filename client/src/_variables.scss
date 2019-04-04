@@ -1,14 +1,12 @@
 @import '~@angular/material/theming';
-@include mat-core();
-
 @import './custom_palettes.scss';
-@import './styles.scss';
-
 
 $my-app-primary: mat-palette($md-primary, 500, A400, A700);
 $my-app-accent:  mat-palette($md-secondary, 500, A400, A700);
 $my-app-warn:    mat-palette($mat-deep-orange);
 
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
-@include angular-material-theme($my-app-theme);
+$primary: mat-color($my-app-primary);
+$primary-contrast: mat-color($my-app-primary, default-contrast);
+$secondary: mat-color($my-app-accent);
+$secondary-contrast: mat-color($my-app-accent, default-contrast);
