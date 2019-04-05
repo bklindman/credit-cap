@@ -4,15 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialCompsModule } from './material-comps.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RoutingModule } from './routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialCompsModule
+    MaterialCompsModule,
+    FlexLayoutModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
