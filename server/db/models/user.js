@@ -4,6 +4,12 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET;
 
 var UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 2,
+    match: /^[a-zA-Z]*$/
+  },
   username: {
     type: String,
     required: true,

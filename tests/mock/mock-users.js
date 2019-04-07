@@ -4,10 +4,12 @@ const {User} = require('../../server/db/models/user');
 
 const DBUsers = [
   {
+    name: 'John',
     username: 'user1',
     password: 'password123'
   },
   {
+    name: 'Doe',
     username: 'user2',
     password: 'password456'
   }
@@ -15,21 +17,25 @@ const DBUsers = [
 
 const DBAdmins = [
   {
+    name: 'Jane',
     username: 'adminOne',
     password: 'password321'
   },
   {
+    name: 'Josh',
     username: 'adminTwo',
     password: 'password654'
   }
 ];
 
 const newUser = new User({
+  name: 'Bill',
   username: 'newuser',
   password: 'newpassword'
 });
 
 const newAdmin = new Admin({
+  name: 'Tim',
   username: 'newadmin',
   password: 'newadminpassword'
 });
