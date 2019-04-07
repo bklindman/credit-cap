@@ -12,11 +12,11 @@ router.use( (req, res, next) => {
   next();
 });
 
-router.post('/admin/login', (req, res) => {
+router.post('/admins/login', (req, res) => {
   loginLogic(req, res, Admin);
 });
 
-router.post('/user/login', (req, res) => {
+router.post('/users/login', (req, res) => {
   loginLogic(req, res, User);
 });
 
