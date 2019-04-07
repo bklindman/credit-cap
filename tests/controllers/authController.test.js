@@ -61,7 +61,7 @@ describe('Authentication Controller /auth', () => {
     it('should return token with valid user credentials', (done) => {
       let user = DBUsers[1];
       request(app)
-      .post('/auth/user/login')
+      .post('/auth/users/login')
       .send(user)
       .expect(200)
       .expect((res) => {
@@ -78,7 +78,7 @@ describe('Authentication Controller /auth', () => {
       let incorrectCreds = Object.assign({}, DBUsers[0]);
       incorrectCreds.password = "wrongpassword";
       request(app)
-      .post('/auth/user/login')
+      .post('/auth/users/login')
       .send(incorrectCreds)
       .expect(401)
       .expect((res) => {
@@ -92,7 +92,7 @@ describe('Authentication Controller /auth', () => {
     it('should not allow admins to log in as users', (done) => {
       let admin = DBAdmins[0];
       request(app)
-      .post('/auth/user/login')
+      .post('/auth/users/login')
       .send(admin)
       .expect(400, done);
     });
@@ -102,7 +102,7 @@ describe('Authentication Controller /auth', () => {
     it('should not allow users to log in as admins', (done) => {
       let user = DBUsers[0];
       request(app)
-      .post('/auth/admin/login')
+      .post('/auth/admins/login')
       .send(user)
       .expect(400, done);
     });
