@@ -1,0 +1,36 @@
+<div class="forms" fxLayout="row" fxLayout.xs="column">
+  <div class="login" fxFlex="50%" fxLayoutAlign="center">
+    <form (ngSubmit)="onSubmitLogin(f1)" #f1="ngForm" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
+      <h2 class="mat-title">Log in below.</h2>
+      <mat-form-field>
+        <input matInput placeholder="Username" ngModel name="username">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" ngModel name="password">
+      </mat-form-field>
+      <button mat-flat-button color="primary">Log in</button>
+    </form>
+  </div>
+  <mat-divider vertical="true"></mat-divider>
+  <div class="signup" fxFlex="50%" fxLayoutAlign="center">
+    <form (ngSubmit)="onSubmitRegister(f2)" #f2="ngForm" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
+      <h2 class="mat-title">New User? Sign up below.</h2>
+      <mat-form-field>
+        <input matInput placeholder="Username" ngModel name="username">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Name" ngModel name="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" ngModel name="password">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Confirm Password" type="password">
+      </mat-form-field>
+      <button mat-flat-button color="primary">Sign up</button>
+    </form>
+  </div>
+</div>
