@@ -4,7 +4,7 @@ const {Admin} = require('../../server/db/models/admin');
 var admin; 
 beforeEach(() => {
     admin = new Admin({
-      username: "John",
+      name: "John",
       username: "admin",
       password: "password"
     });
