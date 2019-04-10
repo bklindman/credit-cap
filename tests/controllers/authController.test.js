@@ -25,10 +25,10 @@ describe('Authentication Controller /auth', () => {
       .send(user)
       .expect(200)
       .expect((res) => {
-        expect(res.body.token).toBeDefined();
+        expect(res.header["set-cookie"][0]).toMatch(/x-auth-token/);
       }).end((err, response) => {
         if(err) done(err);
-        let token = jwt.decode(response.body.token);
+        let token = jwt.decode(getTokenFromHeader(response));
         User.findOne({_id: token.id}).then((db_user) => {
           expect(db_user).toBeDefined();
           expect(db_user.username).toBe(user.username.toLowerCase());
@@ -56,7 +56,7 @@ describe('Authentication Controller /auth', () => {
     });
   });
 
-  describe('POST /user/login', () => {
+  describe('POST /users/login', () => {
 
     it('should return token with valid user credentials', (done) => {
       let user = DBUsers[1];
@@ -65,10 +65,10 @@ describe('Authentication Controller /auth', () => {
       .send(user)
       .expect(200)
       .expect((res) => {
-        expect(res.body.token).toBeDefined();
+        expect(res.header["set-cookie"][0]).toMatch(/x-auth-token/);
       }).end((err, response) => {
         if(err) return done(err);
-        let token = jwt.decode(response.body.token);
+        let token = jwt.decode(getTokenFromHeader(response));
         expect(token.username).toBe(user.username);
         done();
       });
@@ -98,7 +98,7 @@ describe('Authentication Controller /auth', () => {
     });
   });
 
-  describe('POST /admin/login', () => {
+  describe('POST /auth/admins/login', () => {
     it('should not allow users to log in as admins', (done) => {
       let user = DBUsers[0];
       request(app)
@@ -108,3 +108,11 @@ describe('Authentication Controller /auth', () => {
     });
   });
 });
+
+var getTokenFromHeader = function(response){
+  cookieString = response.header["set-cookie"][0];
+  return cookieString.substring(
+    cookieString.indexOf("=")+1,
+    cookieString.indexOf(";")
+  );
+}
