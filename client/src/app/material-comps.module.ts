@@ -5,6 +5,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatCardModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -21,7 +23,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatCardModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ]
 })
 export class MaterialCompsModule { }
