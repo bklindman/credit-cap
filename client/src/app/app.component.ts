@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+
+  constructor(private authService: AuthenticationService){
+
+  }
+
+  onLogout(){
+    this.authService.logOut().subscribe(res => {
+      this.authService.deleteLocalStorage();
+    });
+  }
 }

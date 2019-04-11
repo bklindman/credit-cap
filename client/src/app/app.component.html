@@ -1,8 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
+<div id="nav">
   <mat-toolbar color="primary" class="toolbar">
       <mat-toolbar-row class="mat-elevation-z5">
         <span>CreditCap</span>
+        <span class="spacer"></span>
+        <span *ngIf="!this.authService.isAuthenticated(); else accountBlock">
+          <button mat-button routerLink="/login">Log In</button>
+        </span>
+        <ng-template #accountBlock>
+          <span>
+            <button mat-icon-button [matMenuTriggerFor]="options">
+              <i class="material-icons">account_circle</i>
+            </button>
+            <mat-menu #options="matMenu">
+              <button mat-menu-item (click)="onLogout()">Sign out</button>
+            </mat-menu>
+          </span>
+        </ng-template>
       </mat-toolbar-row>
   </mat-toolbar>
 </div>
