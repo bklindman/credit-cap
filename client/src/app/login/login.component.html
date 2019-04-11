@@ -1,36 +1,43 @@
 <div class="forms" fxLayout="row" fxLayout.xs="column">
   <div class="login" fxFlex="50%" fxLayoutAlign="center">
-    <form (ngSubmit)="onSubmitLogin(f1)" #f1="ngForm" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
       <h2 class="mat-title">Log in below.</h2>
       <mat-form-field>
-        <input matInput placeholder="Username" ngModel name="username">
+        <input matInput placeholder="Username" formControlName="username" name="username">
+        <mat-error *ngIf="loginForm.get('username').invalid">{{ getUsernameLoginErrors() }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Password" type="password" ngModel name="password">
+        <input matInput placeholder="Password" type="password" formControlName="password" name="password">
+        <mat-error *ngIf="loginForm.get('username').invalid">{{ getPassLoginErrors() }}</mat-error>
       </mat-form-field>
-      <button mat-flat-button color="primary">Log in</button>
+      <button mat-flat-button color="primary" [disabled]="loginForm.invalid">Log in</button>
     </form>
   </div>
   <mat-divider vertical="true"></mat-divider>
   <div class="signup" fxFlex="50%" fxLayoutAlign="center">
-    <form (ngSubmit)="onSubmitRegister(f2)" #f2="ngForm" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
+    <form [formGroup]="signupForm" #test (ngSubmit)="onSubmitRegister()" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
       <h2 class="mat-title">New User? Sign up below.</h2>
       <mat-form-field>
-        <input matInput placeholder="Username" ngModel name="username">
+        <input matInput placeholder="Username" formControlName="username" name="username">
+        <mat-error *ngIf="signupForm.get('username').invalid">{{ getUsernameSignupErrors() }}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Name" ngModel name="name">
+        <input matInput placeholder="Name" formControlName="name" name="name">
+        <mat-error *ngIf="signupForm.get('name').invalid">{{ getNameErrors() }}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Password" type="password" ngModel name="password">
+        <input matInput placeholder="Password" type="password" formControlName="password" name="password">
+        <mat-error *ngIf="signupForm.get('password').invalid">{{ getPassSignupErrors() }}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Confirm Password" type="password">
+        <input matInput placeholder="Confirm Password" formControlName="confirmPass" type="password">
+        <mat-error *ngIf="signupForm.get('confirmPass').invalid">{{ getConfirmErrors() }}</mat-error>
       </mat-form-field>
-      <button mat-flat-button color="primary">Sign up</button>
+      <mat-error *ngIf=" signupForm.get('confirmPass').touched && signupForm.hasError('nonMatching')">{{ getMatchingErrors() }}</mat-error>
+      <button mat-flat-button color="primary" [disabled]="signupForm.invalid">Sign up</button>
     </form>
   </div>
 </div>
