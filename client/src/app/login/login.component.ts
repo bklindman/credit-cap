@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { confirmPasswordValidator } from '../validators/confirm-password';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { confirmPasswordValidator } from '../validators/confirm-password';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
-  constructor(private authService : AuthenticationService) { }
+  constructor(private authService : AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password
     }).subscribe( res => {
       localStorage.setItem("user", JSON.stringify(res));
+      this.router.navigate(['/dashboard']);
     });
   }
 
@@ -53,12 +55,7 @@ export class LoginComponent implements OnInit {
       password: this.signupForm.value.password
     }).subscribe( res => {
       localStorage.setItem("user", JSON.stringify(res));
-    });
-  }
-
-  onLogout() {
-    this.authService.logOut().subscribe(res => {
-      this.authService.deleteLocalStorage();
+      this.router.navigate(['/dashboard']);
     });
   }
 
