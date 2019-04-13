@@ -57,7 +57,7 @@ function signupLogic(req,res, Type){
         sameSite: 'LAX',
         expires: expiry,
         httpOnly: false
-      }).send({auth: true, name: inst.name, expiry});
+      }).send({auth: true, name: inst.name, expiry, linked: false});
     }).catch((e) => {
       if(e.name === 'MongoError'){
         return res.status(400).send({message:"A user already exists with that username."});
@@ -82,7 +82,7 @@ function loginLogic(req, res, Type) {
       sameSite: 'LAX',
       expires: expiry,
       httpOnly: false
-    }).send({auth: true, name: user.name, expiry});
+    }).send({auth: true, name: user.name, expiry, linked: user.linked});
   }).catch((e)=> {
     if(e === 'Invalid username/password.'){
       return res.status(401).send({message: e});

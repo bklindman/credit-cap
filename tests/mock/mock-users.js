@@ -1,5 +1,7 @@
+const {Account} = require('../../server/db/models/account');
 const {Admin} = require('../../server/db/models/admin');
 const {User} = require('../../server/db/models/user');
+
 
 
 const DBUsers = [
@@ -42,7 +44,7 @@ const newAdmin = new Admin({
 
 var populateUsers = function(done){
   console.log('Emptying Database');
-  User.deleteMany({}).then(() => {
+  Account.deleteMany({}).then(() => {
     console.log('Inserting mock users and admins');
     var results = []
     for(var user of DBUsers){
