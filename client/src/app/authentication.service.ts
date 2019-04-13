@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { UserLogin } from './interfaces/UserLogin';
-import { AuthResult } from './interfaces/AuthResult';
+import { UserStore } from './interfaces/UserStore';
 import { UserSignup } from './interfaces/UserSignup';
 
 @Injectable({
@@ -13,11 +13,11 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   signUp(user: UserSignup){
-    return this.http.post<AuthResult>(this.authUrl, user);
+    return this.http.post<UserStore>(this.authUrl, user);
   }
 
   logIn(user: UserLogin){
-    return this.http.post<AuthResult>(this.authUrl+"/login", user);
+    return this.http.post<UserStore>(this.authUrl+"/login", user);
   }
 
   logOut() {
@@ -29,7 +29,7 @@ export class AuthenticationService {
     if(!info){
       return false;
     }
-    let user: AuthResult = JSON.parse(info);
+    let user: UserStore = JSON.parse(info);
     let expired: boolean = (new Date(user.expiry)) < new Date();
     if (expired) this.deleteLocalStorage();
     return !expired;
@@ -37,5 +37,13 @@ export class AuthenticationService {
 
   public deleteLocalStorage(): void {
     localStorage.removeItem('user');
+  }
+
+  public getUserStore(): UserStore{
+    if(this.isAuthenticated()){
+      let info = localStorage.getItem('user');
+      let user: UserStore = JSON.parse(info);
+      return user;
+    }
   }
 }
