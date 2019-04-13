@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,18 @@ import { AuthenticationService } from './authentication.service';
 export class AppComponent {
   title = 'client';
 
-  constructor(private authService: AuthenticationService){
+  constructor(private authService: AuthenticationService, private router: Router){
 
   }
 
   onLogout(){
     this.authService.logOut().subscribe(res => {
       this.authService.deleteLocalStorage();
+      this.router.navigate(['']);
     });
+  }
+
+  isLoggedIn(){
+    return this.authService.isAuthenticated();
   }
 }
