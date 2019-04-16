@@ -8,6 +8,7 @@ var auth = (req, res, next) => {
   }
   jwt.verify(token, secret, function(err, decoded) {
     if(err) return res.status(400).send({message: 'Failed to authenticate token.'});
+    req.userId = decoded.id;
     next();
   });
 };
