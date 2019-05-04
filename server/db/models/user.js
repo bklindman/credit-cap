@@ -3,6 +3,10 @@ const {Account} = require('./account');
 
 
 var ItemSchema = new mongoose.Schema({
+  institution_name: {
+    type: String,
+    required: true
+  },
   item_id: {
     type: String,
     required: true
@@ -10,6 +14,11 @@ var ItemSchema = new mongoose.Schema({
   access_token: {
     type: String,
     required: true
+  },
+  accounts: {
+    type: [String],
+    required: true,
+    default: []
   }
 }, {_id: false});
 

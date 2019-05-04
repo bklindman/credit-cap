@@ -88,7 +88,8 @@ describe('User', () => {
     it(('should be valid with access_token and item_id properties'), (done) => {
       let valid = {
         access_token: 'test_token',
-        item_id: 'test_id'
+        item_id: 'test_id',
+        institution_name: 'Test Bank'
       }
       user.items.push(valid);
       user.items[0].validate((err) => {
