@@ -1,3 +1,9 @@
-<p>
-  Hello, {{getName()}}
-</p>
+<div *ngIf="user?.linked === false; else dashboard" class="plaid-intro">
+  <h1 class="mat-display-3 greeting">Hi, </h1>
+  <h2 class="mat-h2">Welcome to CreditCap! Before we can start matching you with credit cards,
+     you must link your bank account using Plaid. <br>Have questions about Plaid? Read more here.</h2>
+     <button mat-flat-button color="accent" (click)="goToLink()">Link with Plaid</button>
+</div>
+<ng-template #dashboard>
+  <p>{{user.linked}}</p>
+</ng-template>
