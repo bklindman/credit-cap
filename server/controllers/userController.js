@@ -17,7 +17,6 @@ router.get('/accounts', auth, (req, res) => {
 module.exports = router;
 
 function mapBanksToAccounts(user) {
-  throw new Error('Ooops');
   return user.items.reduce((obj, item) => {
     obj[item.institution_name] = item.accounts;
     return obj;
