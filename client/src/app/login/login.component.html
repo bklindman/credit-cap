@@ -1,6 +1,6 @@
 <div class="forms" fxLayout="row" fxLayout.xs="column">
   <div class="login" fxFlex="50%" fxLayoutAlign="center">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" fxLayout="column" fxFlex="50%" fxFlex.xs="80%" autocomplete="off">
       <h2 class="mat-title">Log in below.</h2>
       <mat-form-field>
         <input matInput placeholder="Username" formControlName="username" name="username">
@@ -15,8 +15,8 @@
   </div>
   <mat-divider vertical="true"></mat-divider>
   <div class="signup" fxFlex="50%" fxLayoutAlign="center">
-    <form [formGroup]="signupForm" #test (ngSubmit)="onSubmitRegister()" fxLayout="column" fxFlex="50%" fxFlex.xs="100%" autocomplete="off">
-      <h2 class="mat-title">New User? Sign up below.</h2>
+    <form [formGroup]="signupForm" #test (ngSubmit)="onSubmitRegister()" fxLayout="column" fxFlex="50%" fxFlex.xs="80%" autocomplete="off">
+      <h2 class="mat-title">New User? Register below.</h2>
       <mat-form-field>
         <input matInput placeholder="Username" formControlName="username" name="username">
         <mat-error *ngIf="signupForm.get('username').invalid">{{ getUsernameSignupErrors() }}</mat-error>

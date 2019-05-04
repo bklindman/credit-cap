@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     }).subscribe( res => {
-      localStorage.setItem("user", JSON.stringify(res));
+      this.authService.setUserStore(res);
       this.router.navigate(['/dashboard']);
     });
   }
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       username: this.signupForm.value.username,
       password: this.signupForm.value.password
     }).subscribe( res => {
-      localStorage.setItem("user", JSON.stringify(res));
+      this.authService.setUserStore(res);
       this.router.navigate(['/dashboard']);
     });
   }
