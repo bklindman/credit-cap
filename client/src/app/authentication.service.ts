@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { UserLogin } from './interfaces/UserLogin';
 import { UserStore } from './interfaces/UserStore';
 import { UserSignup } from './interfaces/UserSignup';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,16 @@ export class AuthenticationService {
   authUrl = "/auth/users";
   private user: UserStore;
   public userStoreChange: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.user = this.getUserStore();
+    this.userStoreChange.next(this.user);
+   }
 
-  signUp(user: UserSignup){
+  signUp(user: UserSignup): Observable<UserStore> {
     return this.http.post<UserStore>(this.authUrl, user);
   }
 
-  logIn(user: UserLogin){
+  logIn(user: UserLogin): Observable<UserStore>{
     return this.http.post<UserStore>(this.authUrl+"/login", user);
   }
 
@@ -44,7 +47,7 @@ export class AuthenticationService {
 
   public getUserStore(): UserStore{
     if(this.isAuthenticated()){
-      return this.user;
+      return JSON.parse(localStorage.getItem('user'));
     }
   }
 
