@@ -51,7 +51,7 @@ function storeBankInfo(userId, item_id, access_token, metadata) {
 function createItem(item_id, access_token, metadata){
   let item = {item_id, access_token, institution_name: metadata.institution.name}
   item.accounts = metadata.accounts.filter((account) => {
-    ['depository', 'credit'].includes(account.type)
+    return ['depository', 'credit'].includes(account.type)
   }).map(account => account.name);
   return item;
 }
