@@ -14,4 +14,8 @@ export class UserService {
   public getAccounts(): Observable<UserBank[]>{
     return this.http.get<UserBank[]>(`${this.route}/accounts`);
   }
+
+  public getExpensesOverview(): Observable<any[]>{
+    return this.http.get<[]>(`${this.route}/expenses/categories`);
+  }
 }
