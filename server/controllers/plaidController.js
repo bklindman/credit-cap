@@ -1,24 +1,11 @@
 const express = require('express');
-const plaid = require('plaid');
-
+const { client } = require('../utils/plaid-client');
 const { User } = require('../db/models/user');
 const { auth } = require('../middleware/auth');
 
 
 
 var router = express.Router();
-
-var client_id = process.env["CLIENT_ID"];
-var plaid_secret = process.env["PLAID_SECRET"];
-var plaid_public = process.env["PLAID_PUBLIC"];
-
-
-var client = new plaid.Client(
-  client_id,
-  plaid_secret,
-  plaid_public,
-  plaid.environments.sandbox
-);
 
 
 router.post('/get_access_token', auth, (req, res) => {
