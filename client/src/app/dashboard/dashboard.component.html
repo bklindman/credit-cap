@@ -1,9 +1,42 @@
 <div *ngIf="user?.linked === false; else dashboard" class="plaid-intro">
   <h1 class="mat-display-3 greeting">Hi, </h1>
   <h2 class="mat-h2">Welcome to CreditCap! Before we can start matching you with credit cards,
-     you must link your bank account using Plaid. <br>Have questions about Plaid? Read more here.</h2>
-     <button mat-flat-button color="accent" (click)="goToLink()">Link with Plaid</button>
+    you must link your bank account using Plaid. <br>Have questions about Plaid? Read more here.</h2>
+  <button mat-flat-button color="accent" (click)="goToLink()">Link with Plaid</button>
 </div>
 <ng-template #dashboard>
-  <p>{{user.linked}}</p>
+  <div class="container data" fxLayout fxLayout.xs="column" fxLayoutAlign="center">
+    <div fxFlex="40%" class="main-card">
+      <h2 class="mat-h2">Bank Accounts</h2>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let userBank of userBanks">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ userBank.name }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let account of userBank?.accounts">
+            <p class="account">
+              {{ account }}
+            </p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="chart main-card" fxFlex="60%" *ngIf="expenses">
+      <h2 class="mat-h2">Purchase Overview</h2>
+      <mat-card fxLayout>
+      <ngx-charts-pie-chart fxFlex
+        [scheme]="colorScheme"
+        [results]="expenses"
+        [legend]="showLegend"
+        [legendPosition]="legendPosition"
+        [explodeSlices]="false"
+        [labels]="showLabels"
+        [doughnut]="false"
+        [gradient]="gradient">
+      </ngx-charts-pie-chart>
+      </mat-card>
+    </div>
+  </div>
 </ng-template>

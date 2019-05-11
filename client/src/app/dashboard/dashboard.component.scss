@@ -5,3 +5,29 @@
 .greeting {
   padding-top: 100px;
 }
+
+.data {
+  // padding-top: 10%;
+  min-height: 50%;
+}
+
+.account {
+  text-indent: 10%;
+}
+
+// .chart {
+//   height: 500px;
+// }
+
+.mat-card{
+  min-height: 50vh;
+  padding: 0;
+}
+
+.main-card{
+  margin: 20px 20px 20px 20px;
+}
+
+:host ::ng-deep .main-card ul {
+  overflow: auto !important;
+}
