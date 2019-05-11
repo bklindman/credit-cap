@@ -6,7 +6,7 @@ let prodFile = 'environment.prod.ts';
 let directory = './client/src/environments';
 let env = {
   production: false,
-  key: process.env.key
+  key: process.env["PLAID_PUBLIC"]
 };
 if(!fs.existsSync(directory)){
   console.log('Environments directory doesn\'t exist. Creating directory.');
