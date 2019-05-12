@@ -39,7 +39,9 @@ router.get('/expenses/categories', auth, (req, res) => {
       }));
     };
     Promise.all(promises).then(()=> {return transactions}).then((transactions) => {
-      transactions = transactions.map((transaction) => [transaction.category[0], transaction.amount])
+      transactions = transactions.filter((transaction) => {
+        return !['Bank Fees', 'Cash Advance' , 'Interest',  'Payment', 'Tax' ,'Transfer'].includes(transaction.category[0])
+      }).map((transaction) => [transaction.category[0], transaction.amount])
         .reduce((acc, val) => {
           val[0] in  acc ? acc[val[0]] += val[1] : acc[val[0]] = val[1];
           return acc;

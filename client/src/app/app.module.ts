@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DialogAddMoreAccountsComponent } from './dialog-add-more-accounts/dialog-add-more-accounts.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    DialogAddMoreAccountsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgxChartsModule
   ],
   providers: [AuthenticationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogAddMoreAccountsComponent]
 })
 export class AppModule { }

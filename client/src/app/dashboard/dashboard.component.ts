@@ -8,6 +8,8 @@ import { UserBank } from '../interfaces/UserBank';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import * as chartSettings from './piechart-properties';
+import { MatDialog } from '@angular/material';
+import { DialogAddMoreAccountsComponent } from '../dialog-add-more-accounts/dialog-add-more-accounts.component';
 declare let Plaid: any;
 
 @Component({
@@ -18,6 +20,7 @@ declare let Plaid: any;
 export class DashboardComponent implements OnInit {
   public user: UserStore;
   private handler: any;
+  private accountChanges: boolean = false;
   mediaQuery$: Subscription;
   activeMediaQuery: string;
   public userBanks: UserBank[] = [];
@@ -31,9 +34,25 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthenticationService,
      private plaidService: PlaidLinkService, 
      private userService: UserService,
-     private mediaObserver: MediaObserver) {
+     private mediaObserver: MediaObserver,
+     public dialog: MatDialog) {
        this.subscribeToMedia();
      }
+
+  openDialog(): void {
+    const diagRef = this.dialog.open(DialogAddMoreAccountsComponent, {
+      width: "250px",
+    });
+
+    diagRef.afterClosed().subscribe(result =>{
+      if (result) this.goToLink();
+      else if(this.accountChanges) {
+        this.accountChanges = false;
+        this.authService.updateUserStore("linked", true);
+        this.getAccounts();
+      }
+    });
+  }
 
   private subscribeToMedia(): void {
     this.mediaQuery$ = this.mediaObserver.media$.subscribe((change: MediaChange) => {
@@ -65,14 +84,21 @@ export class DashboardComponent implements OnInit {
       language: 'en',
       onSuccess: (public_token, metadata) => {
         this.getPublicToken(public_token, metadata);
+      },
+      onExit: (error, metadata) => {
+        if(this.accountChanges) {
+          this.accountChanges = false;
+          this.authService.updateUserStore("linked", true);
+          this.getAccounts();
+        }
       }
     });
   }
 
   getPublicToken(token: String, metadata: String){
     this.plaidService.integrateLink(token, metadata).subscribe((res) => {
-      this.authService.updateUserStore("linked", true);
-      this.getAccounts();
+      this.accountChanges = true;
+      this.openDialog();
     });
   }
 
