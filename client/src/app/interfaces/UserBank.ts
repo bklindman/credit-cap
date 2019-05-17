@@ -1,4 +1,4 @@
-export class UserBank{
+export interface UserBank{
   name: string;
   accounts: [string];
 }
