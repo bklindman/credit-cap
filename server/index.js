@@ -9,6 +9,7 @@ const path = require('path');
 var auth = require('./controllers/authController');
 var link_handler = require('./controllers/plaidController');
 var userRoute = require('./controllers/userController');
+var cardRoute = require('./controllers/cardController');
 
 const port = process.env.PORT;
 
@@ -23,6 +24,8 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/auth', auth);
 app.use('/plaid', link_handler);
 app.use('/user', userRoute);
+app.use('/cards', cardRoute);
+
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
