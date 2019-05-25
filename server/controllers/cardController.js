@@ -1,11 +1,11 @@
 const express = require('express');
 const { auth } = require('../middleware/auth');
 const { CreditCard } = require('../db/models/credit_card');
+const {  getAllCards, calculateRewards, createRewardsMap } = require('../utils/card-util');
+const { getPurchases } = require('../utils/user-util');
+
 var router = express.Router();
 
-
-
-module.exports = router;
 
 router.get('/', auth, (req, res) => {
   CreditCard.find().then((cards) => {
@@ -14,3 +14,23 @@ router.get('/', auth, (req, res) => {
     console.log(err);
   });
 });
+
+router.get('/recommend', auth, (req, res) => {
+  getAllCards().then((cards) => {
+    for (let card of cards){
+      createRewardsMap(card);
+    }
+    return cards;
+  }).then((cards) => {
+    return Promise.all([getPurchases(req.userId), cards]);
+  }).then((data) => {
+    let cards = data[1];
+    for(let card of cards) calculateRewards(card, data[0]);
+    cards = cards.sort((cardA, cardB) => cardB.total - cardA.total);
+    for(let card of cards){
+      console.log(`${card.institution} ${card.name} ${card.total}`)
+    }
+  });
+});
+
+module.exports = router;
