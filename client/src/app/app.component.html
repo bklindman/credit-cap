@@ -1,23 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="nav">
   <mat-toolbar color="primary" class="toolbar">
-      <mat-toolbar-row class="mat-elevation-z5">
-        <span>CreditCap</span>
+    <mat-toolbar-row class="mat-elevation-z5">
+      <span>CreditCap</span>
+      <ng-container *ngIf="!isLoggedIn(); else accountBlock">
         <span class="spacer"></span>
-        <span *ngIf="!isLoggedIn(); else accountBlock">
+        <span>
           <button mat-button routerLink="/login">Log In</button>
         </span>
-        <ng-template #accountBlock>
-          <span>
-            <button mat-icon-button [matMenuTriggerFor]="options">
-              <i class="material-icons">account_circle</i>
-            </button>
-            <mat-menu #options="matMenu">
-              <button mat-menu-item (click)="onLogout()">Sign out</button>
-            </mat-menu>
-          </span>
-        </ng-template>
-      </mat-toolbar-row>
+      </ng-container>
+      <ng-template #accountBlock>
+        <button mat-button routerLink="/credit-cards">
+          Cards
+        </button>
+        <span class="spacer"></span>
+        <span>
+          <button mat-icon-button [matMenuTriggerFor]="options">
+            <i class="material-icons">account_circle</i>
+          </button>
+          <mat-menu #options="matMenu">
+            <button mat-menu-item (click)="onLogout()">Sign out</button>
+          </mat-menu>
+        </span>
+      </ng-template>
+    </mat-toolbar-row>
   </mat-toolbar>
 </div>
 <router-outlet></router-outlet>

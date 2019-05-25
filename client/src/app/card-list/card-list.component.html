@@ -1,0 +1,16 @@
+<div class="container">
+  <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-evenly" ngClass.gt-sm="list-gtsm">
+    <mat-card *ngFor="let card of cards">
+      <h1 class="mat-display-2">{{ getFullName(card) }}</h1>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let reward of getRewardsSummary(card)">
+            {{ reward }}
+          </li>
+        </ul>
+        <p>Annual Fee: {{ getFeeDescription(card)}}</p>
+        <p>Bonus: {{ getBonusDescription(card)}}<p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

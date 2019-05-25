@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogAddMoreAccountsComponent } from './dialog-add-more-accounts/dialog-add-more-accounts.component';
+import { CardListComponent } from './card-list/card-list.component';
+import { DecimalPipe } from '@angular/common';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { DialogAddMoreAccountsComponent } from './dialog-add-more-accounts/dialo
     HomeComponent,
     LoginComponent,
     DashboardComponent,
-    DialogAddMoreAccountsComponent
+    DialogAddMoreAccountsComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { DialogAddMoreAccountsComponent } from './dialog-add-more-accounts/dialo
     HttpClientModule,
     NgxChartsModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, DecimalPipe],
   bootstrap: [AppComponent],
   entryComponents: [DialogAddMoreAccountsComponent]
 })
