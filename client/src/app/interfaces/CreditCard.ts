@@ -11,10 +11,11 @@ interface Fee {
 }
 
 interface PointSystem {
-  base_rate: Number;
-  bonus: Number;
+  base_rate: number;
+  bonus: number;
   unit: String;
-  unit_to_dollar_ratio: Number;
+  ratio_type: String;
+  unit_to_dollar_ratio: number;
   rewards: [Reward];
 }
 

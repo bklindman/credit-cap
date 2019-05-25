@@ -36,8 +36,13 @@ var CreditCardSchema = new mongoose.Schema({
     },
     unit: {
       type: String,
-      enum: ['% Cashback', 'Points', 'Miles'],
+      enum: ['Cashback', 'Points', 'Miles'],
       default: 'Points'
+    },
+    ratio_type: {
+      type: String,
+      enum: ['X', '%'],
+      default: 'X'
     },
     unit_to_dollar_ratio: {
       type: Number,
