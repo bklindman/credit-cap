@@ -1,18 +1,18 @@
 const MerchantPurchases = [
   {
-    category_id: 13005,
-    name: "Test Airlines",
-    amount: 20
-  },
-  {
-    category_id: 13005,
+    category_id: "22001",
     name: "Test Airlines",
     amount: 30
   },
   {
-    category_id: 13005,
+    category_id: "22001",
     name: "Test Airlines",
     amount: 40
+  },
+  {
+    category_id: "22001",
+    name: "Test Airlines",
+    amount: 50
   }
 ]
 
