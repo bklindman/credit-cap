@@ -13,7 +13,7 @@ const { DBAdmins, DBUsers, newUser, newAdmin, populateUsers}= require('../mock/m
 
 describe('Authentication Controller /auth', () => {
   before(function(done){
-    this.timeout(5000);
+    this.timeout(0);
     populateUsers(done);
   });
 
