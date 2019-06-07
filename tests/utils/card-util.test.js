@@ -55,13 +55,22 @@ describe('Credit Card Util Functions', () => {
       }
     });
 
-    it('should calculate rewards based on credit card', () => {
+    it('should calculate category rewards', () => {
       let baseCard = Cards.find(card => card.name == 'Base Card');
       let categoryRewardsCard = Cards.find(card => card.name == 'TestOne Rewards');
       calculateRewards(baseCard, DiningPurchases);
       calculateRewards(categoryRewardsCard, DiningPurchases)
       expect(baseCard.total).toBeCloseTo(90);
       expect(categoryRewardsCard.total).toBeCloseTo(270);
+    });
+
+    it('should calculate merchant rewards', () => {
+      let baseCard = Cards.find(card => card.name == 'Base Card');
+      let merchantRewardsCard = Cards.find(card => card.name == 'Explorer');
+      calculateRewards(baseCard, MerchantPurchases);
+      calculateRewards(merchantRewardsCard, MerchantPurchases)
+      expect(baseCard.total).toBeCloseTo(120);
+      expect(merchantRewardsCard.total).toBeCloseTo(240);
     });
   });
 });
