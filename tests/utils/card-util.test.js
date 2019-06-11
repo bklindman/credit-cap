@@ -72,5 +72,14 @@ describe('Credit Card Util Functions', () => {
       expect(baseCard.total).toBeCloseTo(120);
       expect(merchantRewardsCard.total).toBeCloseTo(240);
     });
+
+    it('should calculate rewards from mixed categories', () => {
+      let baseCard = Cards.find(card=> card.name == 'Base Card');
+      let travelDiningCard = Cards.find(card => card.name == 'Test Preferred');
+      calculateRewards(baseCard, MixedPurchases);
+      calculateRewards(travelDiningCard, MixedPurchases);
+      expect(baseCard.total).toBeCloseTo(210);
+      expect(travelDiningCard.total).toBeCloseTo(420);
+    });
   });
 });
