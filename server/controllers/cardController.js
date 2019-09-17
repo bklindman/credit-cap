@@ -1,7 +1,7 @@
 const express = require('express');
 const { auth } = require('../middleware/auth');
 const { CreditCard } = require('../db/models/credit_card');
-const {  getAllCards, calculateRewards, createRewardsMap } = require('../utils/card-util');
+const { getAllCards, calculateRewards, createRewardsMap } = require('../utils/card-util');
 const { getPurchases } = require('../utils/user-util');
 
 var router = express.Router();
@@ -20,16 +20,11 @@ router.get('/recommend', auth, (req, res) => {
     for (let card of cards){
       createRewardsMap(card);
     }
-    return cards;
-  }).then((cards) => {
     return Promise.all([getPurchases(req.userId), cards]);
   }).then((data) => {
     let cards = data[1];
     for(let card of cards) calculateRewards(card, data[0]);
-    cards = cards.sort((cardA, cardB) => cardB.total - cardA.total);
-    for(let card of cards){
-      console.log(`${card.institution} ${card.name} ${card.total}`)
-    }
+    res.send(cards.sort((cardA, cardB) => cardB.total - cardA.total));
   });
 });
 
