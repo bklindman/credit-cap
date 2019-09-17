@@ -1,12 +1,13 @@
 const { CreditCard } = require('../db/models/credit_card');
 
-
+// Get all credit cards from DB
 function getAllCards(){
   return CreditCard.find().then((cards) => {
     return cards;
   });
 }
 
+// Run the purchases through each credit card to calculate potential rewards for each
 function calculateRewards(card, purchases){
   card.total = 0;
   for(let purchase of purchases){
@@ -22,6 +23,7 @@ function calculateRewards(card, purchases){
   }
 }
 
+// Flatten and simplify the rewards object from Mongoose Model into a new Map
 function createRewardsMap(card){
   card.rewardsMap = new Map();
   for(let reward of card.point_system.rewards){

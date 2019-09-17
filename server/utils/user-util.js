@@ -3,7 +3,9 @@ const { client } = require('../utils/plaid-client');
 var { User } = require('../db/models/user');
 var moment = require('moment');
 
+// Get user purchases from Plaid API
 function getPurchases(userId){
+  // Ignore purchases in the following categories
   let nonPurchaseCategories = ['Bank Fees', 'Cash Advance' , 'Interest',  'Payment', 'Tax' ,'Transfer'];
   return User.findById(userId).then((user) => {
     var transactions = [];
@@ -11,7 +13,7 @@ function getPurchases(userId){
     for (let item of user.items) {
       promises.push(client.getAllTransactions(item.access_token, '1970-01-01', moment().format('YYYY-MM-DD')).then((result) => {
         transactions = transactions.concat(result.filter((purchase) => {
-          return !nonPurchaseCategories.includes(purchase.category[0])
+          return !nonPurchaseCategories.includes(purchase.category[0]);
         }));
       }).catch((err) => {
         console.log(err);
@@ -21,6 +23,7 @@ function getPurchases(userId){
   });
 }
 
+// Map institution name to the user's bank accounts associated with that institution
 function mapBanksToAccounts(user) {
   return user.items.map((item) => {
     return {
@@ -30,6 +33,8 @@ function mapBanksToAccounts(user) {
   });
 }
 
+// Create a Map where the key is a category and the value is the amount a user 
+// has spent on that category over x time 
 function getCategoryProportions(purchases){
   purchases = purchases.map((purchase) => [purchase.category[0], purchase.amount])
     .reduce((acc, val) => {
