@@ -7,10 +7,14 @@ import { CreditCard } from '../interfaces/CreditCard';
   providedIn: 'root'
 })
 export class CardService {
-  url = "/cards";
+  url = "/api/cards";
   constructor(private http: HttpClient) { }
 
   public getAllCreditCards(): Observable<CreditCard[]> {
     return this.http.get<CreditCard[]>(this.url);
+  }
+
+  public recommendCards(): Observable<CreditCard[]>{
+    return this.http.get<CreditCard[]>(`${this.url}/recommend`);
   }
 }
