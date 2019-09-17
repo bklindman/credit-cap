@@ -7,7 +7,7 @@ import { UserBank } from '../interfaces/UserBank';
   providedIn: 'root'
 })
 export class UserService {
-  private route = '/user';
+  private route = '/api/user';
 
   constructor(private http: HttpClient) { }
 

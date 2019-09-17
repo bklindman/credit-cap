@@ -9,7 +9,7 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  authUrl = "/auth/users";
+  authUrl = "/api/auth/users";
   private user: UserStore;
   public userStoreChange: BehaviorSubject<any> = new BehaviorSubject<any>({});
   constructor(private http: HttpClient) {

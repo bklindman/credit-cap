@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PlaidLinkService {
 
-  url = '/plaid';
+  url = '/api/plaid';
   constructor(private http: HttpClient) { }
 
   public integrateLink(public_token : String, metadata: String){
