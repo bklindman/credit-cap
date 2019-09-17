@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CardService } from '../services/card.service';
 import { CreditCard } from '../interfaces/CreditCard';
 import { DecimalPipe } from '@angular/common';
@@ -9,12 +9,14 @@ import { DecimalPipe } from '@angular/common';
   styleUrls: ['./card-list.component.scss']
 })
 export class CardListComponent implements OnInit {
-
+  @Input() cards: CreditCard[];
   constructor(private cardService: CardService, private numberPipe: DecimalPipe ) { }
-  cards: CreditCard[] = [];
+  // cards: CreditCard[] = [];
 
   ngOnInit() {
-    this.getAllCards();
+    if(!this.cards){
+      this.getAllCards();
+    }
   }
 
   getAllCards(): void {
