@@ -16,6 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogAddMoreAccountsComponent } from './dialog-add-more-accounts/dialog-add-more-accounts.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { DecimalPipe } from '@angular/common';
+import { ViewAvailableCardsComponent } from './view-available-cards/view-available-cards.component';
+import { RecommendedCardsComponent } from './recommended-cards/recommended-cards.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { DecimalPipe } from '@angular/common';
     LoginComponent,
     DashboardComponent,
     DialogAddMoreAccountsComponent,
-    CardListComponent
+    CardListComponent,
+    ViewAvailableCardsComponent,
+    RecommendedCardsComponent
   ],
   imports: [
     BrowserModule,
