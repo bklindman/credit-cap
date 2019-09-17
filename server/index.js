@@ -17,14 +17,15 @@ const port = process.env.PORT;
 
 var app = express();
 
+app.set('json spaces', 2);
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname,'public')));
-app.use('/auth', auth);
-app.use('/plaid', link_handler);
-app.use('/user', userRoute);
-app.use('/cards', cardRoute);
+app.use('/api/auth', auth);
+app.use('/api/plaid', link_handler);
+app.use('/api/user', userRoute);
+app.use('/api/cards', cardRoute);
 
 
 app.listen(port, () => {
