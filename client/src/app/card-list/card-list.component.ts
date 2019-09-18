@@ -11,7 +11,6 @@ import { DecimalPipe } from '@angular/common';
 export class CardListComponent implements OnInit {
   @Input() cards: CreditCard[];
   constructor(private cardService: CardService, private numberPipe: DecimalPipe ) { }
-  // cards: CreditCard[] = [];
 
   ngOnInit() {
     if(!this.cards){
